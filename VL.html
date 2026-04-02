@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vyapaar Ledger | Smart UPI Ledger for Small Business</title>
+    <!-- Google Fonts & Smooth Scroll -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefefe;
+            color: #1e293b;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Glassmorphism / modern header */
+        header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            padding: 18px 0;
+            transition: all 0.2s;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .logo span {
+            font-size: 30px;
+        }
+
+        .cta-button {
+            background: #0f172a;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.25s;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .cta-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px -12px #1e3a8a;
+        }
+
+        /* Hero with abstract background & image mockup */
+        .hero {
+            padding: 80px 0 100px 0;
+            background: linear-gradient(105deg, #f8fafd 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 70%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(59,130,246,0.04) 0%, rgba(59,130,246,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        .hero-left {
+            flex: 1.2;
+        }
+        .hero-left h1 {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(to right, #0f172a, #2d4a8c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+        .hero-left p {
+            font-size: 20px;
+            color: #334155;
+            margin-bottom: 40px;
+            max-width: 550px;
+            line-height: 1.5;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .primary-button {
+            background: #1e3a8a;
+            color: white;
+            padding: 14px 36px;
+            border-radius: 48px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+            box-shadow: 0 8px 20px -8px #1e3a8a60;
+        }
+        .primary-button:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+        }
+        .secondary-button {
+            background: transparent;
+            border: 1.5px solid #cbd5e1;
+            color: #1e293b;
+            padding: 14px 36px;
+            border-radius: 48px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .secondary-button:hover {
+            border-color: #2563eb;
+            background: #f1f5f9;
+        }
+        .pricing-badge {
+            margin-top: 32px;
+            background: #eef2ff;
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 16px;
+            color: #1e3a8a;
+        }
+        .hero-right {
+            flex: 1;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNDAwIDQwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNmOGZhZmUiLz48cGF0aCBmaWxsPSIjZTJlM2YwIiBkPSJNMTAwIDE1MGwyMDAgLTIwIDQwIDkwLTE4MCA1MHoiLz48Y2lyY2xlIGN4PSIyMjAiIGN5PSIyMjAiIHI9IjQwIiBmaWxsPSIjM2I4MmY2Ii8+PC9zdmc+') no-repeat center;
+            background-size: contain;
+            min-height: 360px;
+            border-radius: 32px;
+            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.2);
+            background-color: #f1f5f9;
+            background-blend-mode: overlay;
+            position: relative;
+        }
+        /* modern illustration overlay using pure css + image placeholder */
+        .dashboard-mock {
+            background: linear-gradient(145deg, #ffffff, #f3f6fc);
+            border-radius: 28px;
+            padding: 20px;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.2);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mock-img {
+            width: 100%;
+            border-radius: 20px;
+            background: #eef2ff;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 24px;
+        }
+        .mock-bar {
+            height: 12px;
+            background: #cbd5e1;
+            border-radius: 20px;
+            width: 90%;
+        }
+        .mock-bar.fill {
+            background: #3b82f6;
+            width: 65%;
+        }
+        .mock-circle {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* problem & solution sections with fresh card style */
+        .section-title {
+            font-size: 38px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #475569;
+            max-width: 700px;
+            margin: 0 auto 48px;
+        }
+        .problem-section {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+        }
+        .problem-card {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 32px 24px;
+            transition: all 0.25s;
+            border: 1px solid #eef2ff;
+            box-shadow: 0 10px 20px -10px rgba(0,0,0,0.02);
+        }
+        .problem-card:hover {
+            transform: translateY(-6px);
+            border-color: #cbdffc;
+            box-shadow: 0 20px 30px -15px rgba(0,0,0,0.05);
+        }
+        .problem-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .solution-section {
+            background: #f8fafc;
+            padding: 80px 0;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+        }
+        .feature {
+            text-align: center;
+            background: white;
+            padding: 32px 20px;
+            border-radius: 36px;
+            transition: 0.2s;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.02);
+            border: 1px solid #eef2ff;
+        }
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, #eef2ff, #ffffff);
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            box-shadow: 0 12px 18px -12px rgba(59,130,246,0.2);
+        }
+        /* steps */
+        .how-it-works {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 36px;
+        }
+        .step {
+            text-align: center;
+            padding: 20px;
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #0f172a;
+            color: white;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: 0 12px 18px -8px rgba(15,23,42,0.2);
+        }
+
+        /* pricing card */
+        .pricing-section {
+            padding: 80px 0;
+            background: linear-gradient(115deg, #f1f5f9, #ffffff);
+        }
+        .pricing-card {
+            max-width: 540px;
+            margin: 40px auto 0;
+            background: #ffffff;
+            border-radius: 48px;
+            padding: 48px 40px;
+            text-align: center;
+            box-shadow: 0 35px 55px -25px rgba(0,0,0,0.12);
+            border: 1px solid rgba(59,130,246,0.15);
+        }
+        .price {
+            font-size: 68px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .price-period {
+            font-size: 20px;
+            font-weight: 500;
+            color: #475569;
+        }
+        .pricing-features {
+            list-style: none;
+            margin: 40px 0;
+            text-align: left;
+        }
+        .pricing-features li {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+        }
+        .pricing-features li:before {
+            content: "✓";
+            background: #d9f0ec;
+            color: #0f3b2c;
+            font-weight: bold;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+        }
+        .pricing-cta {
+            background: #0f172a;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: 0.2s;
+        }
+        .pricing-cta:hover {
+            background: #2563eb;
+            transform: scale(1.02);
+        }
+
+        .cta-section {
+            padding: 100px 20px;
+            background: linear-gradient(125deg, #0f172a, #1e3a8a);
+            text-align: center;
+            color: white;
+            border-radius: 0px;
+        }
+        .cta-section .primary-button {
+            background: white;
+            color: #0f172a;
+            box-shadow: none;
+        }
+        .cta-section .primary-button:hover {
+            background: #f1f5f9;
+            transform: translateY(-3px);
+        }
+        footer {
+            background: #0a0f1c;
+            color: #cbd5e1;
+            padding: 56px 0 32px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        .footer-section h4 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: 0.2s;
+        }
+        .footer-section a:hover {
+            color: #3b82f6;
+        }
+        .copyright {
+            border-top: 1px solid #1e293b;
+            padding-top: 32px;
+            text-align: center;
+            font-size: 14px;
+        }
+        @media (max-width: 800px) {
+            .hero-left h1 { font-size: 38px; }
+            .container { padding: 0 24px; }
+            .hero-grid { flex-direction: column; }
+            .hero-right { min-height: 280px; width: 100%; }
+        }
+        /* image style inline */
+        .stat-illustration {
+            width: 100%;
+            border-radius: 28px;
+            background: #fff;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .stat-illustration img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        .mock-chart {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 12px 24px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo"><span>📒</span> Vyapaar Ledger</div>
+            <a href="#pricing" class="cta-button">Start Free Trial →</a>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-left">
+            <h1>Stop guessing <br> your business income</h1>
+            <p>Automatic UPI sorting for GST merchants. Know taxable income with clarity — no confusion, no spreadsheets.</p>
+            <div class="hero-buttons">
+                <a href="#pricing" class="primary-button">Get Started →</a>
+                <a href="#how-it-works" class="secondary-button">Watch demo</a>
+            </div>
+            <div class="pricing-badge">✨ ₹299/month · Save 10% yearly · No hidden fees</div>
+        </div>
+        <div class="hero-right">
+            <div class="stat-illustration">
+                <!-- Aesthetic image mockup: modern dashboard preview using embedded SVG / vector graphic style -->
+                <div style="background: linear-gradient(145deg, #f9fcff, #ffffff); border-radius: 32px; padding: 12px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                        <span style="font-weight: 600; color:#1e293b;">📊 Income breakdown</span>
+                        <span style="color:#3b82f6;">this month</span>
+                    </div>
+                    <div style="background:#eef2ff; height: 12px; border-radius: 12px; width: 100%; margin-bottom: 16px;"><div style="background:#3b82f6; width: 74%; height: 12px; border-radius: 12px;"></div></div>
+                    <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;">
+                        <div><span style="font-size: 24px; font-weight: 700;">₹86,420</span><br><span style="font-size: 13px;">Taxable sales</span></div>
+                        <div><span style="font-size: 24px; font-weight: 700;">₹12,300</span><br><span style="font-size: 13px;">Personal</span></div>
+                        <div><span style="font-size: 24px; font-weight: 700;">₹3,250</span><br><span style="font-size: 13px;">Refunds</span></div>
+                    </div>
+                    <div style="background:#f1f5f9; border-radius: 20px; padding: 12px;"><span>✅ Auto-sorted: 347 UPI txn → 283 business / 64 personal</span></div>
+                    <div style="margin-top: 16px; text-align: right;"><span style="background:#eef2ff; padding:6px 12px; border-radius:20px;">📈 +22% vs last month</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="problem-section">
+    <div class="container">
+        <h2 class="section-title">We understand the struggle</h2>
+        <p class="section-subtitle">Running a small business shouldn't feel like a guessing game with your own money.</p>
+        <div class="problem-grid">
+            <div class="problem-card"><div class="problem-icon">🔄</div><h3>Mixed UPI payments</h3><p>Personal and business transactions jumbled together — impossible to separate manually.</p></div>
+            <div class="problem-card"><div class="problem-icon">🧾</div><h3>Tax time anxiety</h3><p>Uncertain taxable income leads to stress, penalties, or missed deductions.</p></div>
+            <div class="problem-card"><div class="problem-icon">⏳</div><h3>Hours wasted sorting</h3><p>Every month you lose 10+ hours on bank statements instead of growing your business.</p></div>
+            <div class="problem-card"><div class="problem-icon">📉</div><h3>No clear insights</h3><p>Spreadsheets don't show you real profit or spending patterns — until now.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="solution-section">
+    <div class="container">
+        <h2 class="section-title">Meet Vyapaar Ledger</h2>
+        <p class="section-subtitle">The smart ledger that speaks your language — not accountant jargon.</p>
+        <div class="features-grid">
+            <div class="feature"><div class="feature-icon">🤖</div><h3>AI auto-categorization</h3><p>Recognizes business income, personal transfers, refunds, and pass-throughs.</p></div>
+            <div class="feature"><div class="feature-icon">📊</div><h3>Income insights</h3><p>Plain English reports: "Your taxable income this month is ₹62,340".</p></div>
+            <div class="feature"><div class="feature-icon">⚡</div><h3>One-click integration</h3><p>Connect your UPI app once & forget — we do the heavy lifting.</p></div>
+            <div class="feature"><div class="feature-icon">🛡️</div><h3>Bank-level security</h3><p>256-bit encryption, read-only access, and GDPR-ready practices.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <h2 class="section-title">Simple setup, powerful results</h2>
+        <p class="section-subtitle">From confusion to clarity in 4 steps</p>
+        <div class="steps">
+            <div class="step"><div class="step-number">1</div><h3>Connect UPI / Bank</h3><p>Secure 2-min connection with any UPI app or bank account.</p></div>
+            <div class="step"><div class="step-number">2</div><h3>Auto-sort</h3><p>Our engine tags every transaction with business or personal logic.</p></div>
+            <div class="step"><div class="step-number">3</div><h3>Review insights</h3><p>Get daily, weekly & monthly reports on your real business income.</p></div>
+            <div class="step"><div class="step-number">4</div><h3>Stay tax-ready</h3><p>Export GST-friendly statements and know your liability anytime.</p></div>
+        </div>
+        <!-- extra visual image: step summary with a minimal illustration -->
+        <div style="margin-top: 56px; background: #eef2ff30; border-radius: 56px; padding: 20px; text-align: center;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                <div style="background: white; border-radius: 32px; padding: 12px 24px;"><span>📱 PhonePe ✔️</span></div>
+                <div style="background: white; border-radius: 32px; padding: 12px 24px;"><span>💰 Google Pay ✔️</span></div>
+                <div style="background: white; border-radius: 32px; padding: 12px 24px;"><span>🏦 Paytm ✔️</span></div>
+                <div style="background: white; border-radius: 32px; padding: 12px 24px;"><span>💳 All Banks ✔️</span></div>
+            </div>
+            <p style="margin-top: 20px; color:#334155;">Works with every UPI app — zero migration hassle</p>
+        </div>
+    </div>
+</section>
+
+<section class="pricing-section" id="pricing">
+    <div class="container">
+        <h2 class="section-title">Simple, transparent pricing</h2>
+        <p class="section-subtitle">No percentage cuts. No surprise fees. Just a flat monthly plan.</p>
+        <div class="pricing-card">
+            <h3 style="font-size: 26px; font-weight: 700;">Vyapaar Pro</h3>
+            <div class="price">₹299<span class="price-period">/month</span></div>
+            <p style="margin: 8px 0 8px;">or ₹3,588/year (save 10% + 2 months free)</p>
+            <ul class="pricing-features">
+                <li>Unlimited UPI transaction sorting</li>
+                <li>Smart GST & income categorization</li>
+                <li>Daily/weekly income summaries</li>
+                <li>Taxable income estimation</li>
+                <li>Mobile & desktop dashboard</li>
+                <li>Priority email support</li>
+            </ul>
+            <a href="#" class="pricing-cta">Start 14-day free trial →</a>
+            <p style="margin-top: 20px; font-size: 14px;">No credit card needed · Cancel anytime</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <h2 style="font-size: 42px; font-weight: 800;">Ready to master your business numbers?</h2>
+        <p style="font-size: 18px; margin: 20px 0 32px;">Join 1,200+ merchants across India who trust Vyapaar Ledger to simplify their UPI accounting.</p>
+        <a href="#pricing" class="primary-button" style="background: white; color:#0f172a;">Claim Your Free Trial →</a>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section"><h4>Vyapaar Ledger</h4><a href="#">Home</a><a href="#how-it-works">How it works</a><a href="#pricing">Pricing</a></div>
+            <div class="footer-section"><h4>Resources</h4><a href="#">Blog</a><a href="#">Tax guides</a><a href="#">UPI help</a></div>
+            <div class="footer-section"><h4>Support</h4><a href="#">Help center</a><a href="#">Privacy policy</a><a href="#">Terms</a><a href="#">Contact</a></div>
+            <div class="footer-section"><h4>Connect</h4><a href="#">hello@vyapaarledger.com</a><a href="#">+91 80 1234 5678</a><a href="#">Bengaluru, India</a></div>
+        </div>
+        <div class="copyright">© 2026 Vyapaar Ledger — Built for micro-entrepreneurs, by makers. GST Made Simple.</div>
+    </div>
+</footer>
+</body>
+</html>
